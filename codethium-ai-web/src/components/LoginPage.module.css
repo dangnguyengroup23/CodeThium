@@ -1,0 +1,556 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+.pageContainer {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 183, 235, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #000000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  animation: backgroundShift 15s ease-in-out infinite alternate;
+}
+
+/* Enhanced floating particles */
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(0, 183, 235, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 30% 60%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 70% 30%, rgba(0, 183, 235, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 120px 120px, 80px 80px;
+  opacity: 0.6;
+  animation: particleFloat 20s linear infinite;
+}
+
+/* Animated gradient blob */
+.pageContainer::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: 
+    radial-gradient(circle, rgba(0, 183, 235, 0.25) 0%, rgba(255, 255, 255, 0.1) 40%, transparent 70%);
+  top: 15%;
+  left: 25%;
+  filter: blur(100px);
+  animation: blobDrift 25s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.formContainer {
+  max-width: 420px;
+  width: 100%;
+  padding: 15px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.08) 50%, 
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  border-radius: 28px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(0, 183, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation: 
+    containerGlow 8s ease-in-out infinite alternate,
+    slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* Inner content wrapper for better layering */
+.formContent {
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #ffffff 0%, #00b7eb 50%, #ffffff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  animation: titleShimmer 4s ease-in-out infinite alternate;
+  text-shadow: 0 0 30px rgba(0, 183, 235, 0.5);
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+  margin-bottom: 36px;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+/* Enhanced input styling */
+.inputGroup {
+  margin-bottom: 24px;
+  position: relative;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 0.5s forwards;
+}
+
+.input {
+  width: 100%;
+  padding: 20px 24px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  font-size: 1rem;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.1),
+    0 0 0 0 rgba(0, 183, 235, 0);
+  outline: none;
+  letter-spacing: 0.3px;
+}
+
+.input:focus {
+  border-color: rgba(0, 183, 235, 0.6);
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(0, 183, 235, 0.05) 100%
+    );
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.1),
+    0 0 0 4px rgba(0, 183, 235, 0.2),
+    0 0 20px rgba(0, 183, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.input:focus::placeholder {
+  opacity: 0.3;
+}
+
+/* Enhanced primary button */
+.primaryButton {
+  width: 100%;
+  padding: 20px 32px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 183, 235, 0.8) 0%, 
+      rgba(0, 183, 235, 0.6) 50%,
+      rgba(0, 150, 200, 0.8) 100%
+    );
+  color: #ffffff;
+  border: 1px solid rgba(0, 183, 235, 0.4);
+  border-radius: 16px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 183, 235, 0.3),
+    0 0 20px rgba(0, 183, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 0.7s forwards;
+}
+
+.primaryButton:hover {
+  background: 
+    linear-gradient(135deg, 
+      rgba(0, 183, 235, 1) 0%, 
+      rgba(0, 200, 255, 0.9) 50%,
+      rgba(0, 183, 235, 1) 100%
+    );
+  transform: translateY(-2px);
+  box-shadow: 
+    0 16px 48px rgba(0, 183, 235, 0.4),
+    0 0 30px rgba(0, 183, 235, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(0, 183, 235, 0.8);
+}
+
+.primaryButton:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 16px rgba(0, 183, 235, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button shine effect */
+.primaryButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.primaryButton:hover::before {
+  left: 100%;
+}
+
+/* Enhanced error styling */
+.error {
+  color: #ff6b6b;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  background: rgba(255, 107, 107, 0.15);
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  backdrop-filter: blur(10px);
+  text-align: left;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+  animation: errorSlide 0.5s ease;
+}
+
+/* Improved divider */
+.divider {
+  margin: 32px 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 1s ease 0.9s forwards;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+.divider::before {
+  margin-right: 20px;
+}
+
+.divider::after {
+  margin-left: 20px;
+}
+
+/* Enhanced social buttons */
+.socialLoginButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeInUp 1s ease 1.1s forwards;
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%
+    );
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.socialButton:hover {
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.2) 0%, 
+      rgba(0, 183, 235, 0.1) 100%
+    );
+  border-color: rgba(0, 183, 235, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 30px rgba(0, 183, 235, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.socialButton img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.socialButton:hover img {
+  transform: scale(1.1);
+}
+
+/* Enhanced toggle buttons */
+.toggleMethod,
+.toggleAuth {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.5s forwards;
+}
+
+.toggleMethod {
+  margin-top: 24px;
+}
+
+.toggleAuth {
+  margin-top: 16px;
+}
+
+.toggleMethod button,
+.toggleAuth button {
+  background: none;
+  border: none;
+  color: #00b7eb;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+}
+
+.toggleMethod button:hover,
+.toggleAuth button:hover {
+  color: #ffffff;
+  background: rgba(0, 183, 235, 0.1);
+  box-shadow: 0 0 20px rgba(0, 183, 235, 0.3);
+}
+
+/* Enhanced footer */
+.footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  animation: fadeIn 1s ease 1.5s forwards;
+}
+
+.footerLinks {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footerLinks a {
+  color: #00b7eb;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footerLinks a:hover {
+  color: #ffffff;
+  background: rgba(0, 183, 235, 0.1);
+  box-shadow: 0 0 15px rgba(0, 183, 235, 0.2);
+}
+
+/* Animations */
+@keyframes backgroundShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes particleFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(360deg); }
+}
+
+@keyframes blobDrift {
+  0% { transform: translate(-50px, -30px) scale(1) rotate(0deg); }
+  100% { transform: translate(50px, 30px) scale(1.3) rotate(180deg); }
+}
+
+@keyframes containerGlow {
+  0% { 
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      0 0 40px rgba(0, 183, 235, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 25px 80px rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(0, 183, 235, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes slideInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes titleShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes errorSlide {
+  from { 
+    opacity: 0; 
+    transform: translateX(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 16px;
+  }
+  
+  .formContainer {
+    padding: 32px 24px;
+    border-radius: 20px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .input {
+    padding: 18px 20px;
+  }
+  
+  .primaryButton {
+    padding: 18px 24px;
+    font-size: 1rem;
+  }
+  
+  .socialButton {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .socialButton img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .socialLoginButtons {
+    gap: 12px;
+  }
+  
+  .footerLinks {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .formContainer {
+    padding: 24px 20px;
+  }
+  
+  .title {
+    font-size: 1.9rem;
+  }
+  
+  .footerLinks {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
