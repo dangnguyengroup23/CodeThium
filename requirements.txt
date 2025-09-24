@@ -1,0 +1,10 @@
+# requirements.txt (for the provided script)
+torch>=2.0.0           # if you need CUDA, install torch from the official instructions instead
+sentencepiece>=0.1.97
+fastapi>=0.95.0
+pydantic>=1.10.0
+uvicorn[standard]>=0.18.0
+numpy>=1.24.0
+tqdm>=4.65.0
+matplotlib>=3.6.0
+ipython>=8.0.0
