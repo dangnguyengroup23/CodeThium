@@ -1,4 +1,8 @@
-# CodeThium AI: Code On! 🚀
+# CodeThium AI: Code On! 
+
+  <img width="600" height="auto" alt="lgo" src="https://github.com/user-attachments/assets/08b63c6d-29ea-45a3-85f9-577decc420f0" />
+
+
 [![Python](https://img.shields.io/badge/Python-%233776AB.svg?style=flat-square&logo=python&logoColor=white)]()
 [![React](https://img.shields.io/badge/React-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB)]()
 [![Node.js](https://img.shields.io/badge/Node.js-%23339933.svg?style=flat-square&logo=node.js&logoColor=white)]()
