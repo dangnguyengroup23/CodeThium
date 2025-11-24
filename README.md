@@ -192,14 +192,6 @@ The backend server exposes the following API endpoints:
 *   `DELETE /api/chats/:id`: Deletes a chat. 🗑️
 *   `POST /chat`: Generates AI chat reply. 💬
 
-## Contributing 🤝
-
-We welcome contributions to CodeThium AI! Please follow these guidelines:
-
-*   Fork the repository. 🍴
-*   Create a new branch for your feature or bug fix. 🌿
-*   Write tests for your code. 🧪
-*   Submit a pull request. 📤
 
 ## License ⚖️
 
